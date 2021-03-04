@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:happening/screens/router.dart' as R;
 import 'package:provider/provider.dart';
 import 'package:happening/models/currentuser.dart';
 import 'package:happening/screens/navigating/nav.dart';
