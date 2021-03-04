@@ -41,26 +41,22 @@ class _RegisteringState extends State<Registering> {
         var setting = await prefs.setString(SPKeys.authToken, token);
         c.setUser(User.fromMap(mp['user']), token);
         if (setting != null) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              Routes.Home, (Route<dynamic> route) => false,
-              arguments: []);
-          Navigator.of(context).pushNamed(Routes.PostRegisterImage);
+          navigatorService.removeAllNavigateTo(Routes.Home, arguments: []);
+          navigatorService.navigateTo(Routes.PostRegisterImage);
         }
       } else {
         c.setError(mp['reason'].toString());
-        Navigator.of(context).pushNamedAndRemoveUntil(
+        navigatorService.removeAllNavigateTo(
           Routes.Welcome,
-          (Route<dynamic> route) => false,
         );
-        Navigator.of(context).pushNamed(Routes.Error);
+        navigatorService.navigateTo(Routes.Error);
       }
     } catch (e) {
       //c.setError(e.toString());
-      Navigator.of(context).pushNamedAndRemoveUntil(
+      navigatorService.removeAllNavigateTo(
         Routes.Welcome,
-        (Route<dynamic> route) => false,
       );
-      Navigator.of(context).pushNamed(Routes.Error);
+      navigatorService.navigateTo(Routes.Error);
     }
   }
 

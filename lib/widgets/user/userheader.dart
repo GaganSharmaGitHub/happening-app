@@ -26,32 +26,34 @@ class UserPageHeader implements SliverPersistentHeaderDelegate {
             Row(
               children: [
                 BackButton(),
-                shrinkOffset > 100
-                    ? Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 20,
-                            backgroundImage: NetworkImage(
-                                user.image ?? DefaultTexts.defImage),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  user.name,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20),
-                                ),
-                                Text('${user.status}'),
-                              ],
+                AnimatedOpacity(
+                  curve: Curves.ease,
+                  duration: Duration(seconds: 1),
+                  opacity: shrinkOffset > 100 ? 1 : 0,
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 20,
+                        backgroundImage:
+                            NetworkImage(user.image ?? DefaultTexts.defImage),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              user.name,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
                             ),
-                          ),
-                        ],
-                      )
-                    : SizedBox()
+                            Text('${user.status}'),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
             shrinkOffset > 100
@@ -77,26 +79,23 @@ class UserPageHeader implements SliverPersistentHeaderDelegate {
                       Text('${user.status}'),
                     ],
                   ),
-            shrinkOffset >= max - min
+            shrinkOffset >= 230
                 ? SizedBox()
-                : Transform.scale(
-                    scale: shrinkOffset < 230 ? 1 : 230 / max,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('${user.followers.length} followers'),
-                              Text(
-                                  'joined on ${user.createdAt.toUtc().toString().split(' ')[0]} '),
-                            ],
-                          ),
+                : Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('${user.followers.length} followers'),
+                            Text(
+                                'joined on ${user.createdAt.toUtc().toString().split(' ')[0]} '),
+                          ],
                         ),
-                        FollowButton(user),
-                      ],
-                    ),
+                      ),
+                      FollowButton(user),
+                    ],
                   ),
           ],
         ),

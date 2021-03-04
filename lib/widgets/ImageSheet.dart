@@ -60,10 +60,10 @@ class ImageSheet extends StatelessWidget {
         if (cselected != null) {
           selected = cselected;
         }
-        Navigator.of(context).pop(selected);
+        navigatorService.pop(selected);
         return;
       }
-      Navigator.of(context).pop();
+      navigatorService.pop();
     }
 
     return Container(

@@ -36,7 +36,7 @@ class _RegisterNameScreenState extends State<RegisterNameScreen> {
 
   checkName() async {
     if (name != '' || name != null) {
-      Navigator.of(context).pushNamed(
+      navigatorService.navigateTo(
         Routes.RegisterPassword,
         arguments: {'email': widget.email, 'name': name},
       );

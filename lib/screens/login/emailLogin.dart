@@ -35,7 +35,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
 
   checkMail() async {
     if (emailxChecked) {
-      Navigator.of(context).pushNamed(Routes.LoginPassword, arguments: email);
+      navigatorService.navigateTo(Routes.LoginPassword, arguments: email);
       return;
     }
     setState(() {

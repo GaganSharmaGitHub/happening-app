@@ -26,23 +26,21 @@ class _SplashScreenState extends State<SplashScreen> {
     try {
       var t = await PostServices().feed(auth);
       c.setUser(User.fromDynamic(t.user), auth);
-      Navigator.of(context).pushNamedAndRemoveUntil(
-          Routes.Home, (Route<dynamic> route) => false,
-          arguments: t.feed);
+      navigatorService.removeAllNavigateTo(Routes.Home, arguments: t.feed);
     } catch (e) {
       c.setError('Sorry we could not log you in.... ${e}');
 
-      Navigator.of(context).pushNamedAndRemoveUntil(
-          Routes.Welcome, (Route<dynamic> route) => false);
-      Navigator.of(context).pushNamed(Routes.Error);
+      navigatorService.removeAllNavigateTo(
+        Routes.Welcome,
+      );
+      navigatorService.navigateTo(Routes.Error);
     }
   }
 
   Future logOut() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.clear().then((value) {
-      Navigator.of(context).pushNamedAndRemoveUntil(
-          Routes.Welcome, (Route<dynamic> route) => false);
+      navigatorService.removeAllNavigateTo(Routes.Welcome);
     });
   }
 
@@ -60,9 +58,10 @@ class _SplashScreenState extends State<SplashScreen> {
         CurrentUser c = context.watch<CurrentUser>();
         c.setError(e.message);
 
-        Navigator.of(context).pushNamedAndRemoveUntil(
-            Routes.Welcome, (Route<dynamic> route) => false);
-        Navigator.of(context).pushNamed(Routes.Error);
+        navigatorService.removeAllNavigateTo(
+          Routes.Welcome,
+        );
+        navigatorService.navigateTo(Routes.Error);
       }
     }
   }

@@ -24,8 +24,8 @@ class SplashedTag extends StatelessWidget {
           child: CustomPaint(
             painter: SplashyPainter(),
             child: InkWell(
-              onTap: () => Navigator.of(context)
-                  .pushNamed(Routes.TagPost, arguments: '${tag.tag}'),
+              onTap: () => navigatorService.navigateTo(Routes.TagPost,
+                  arguments: '${tag.tag}'),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(30.0),

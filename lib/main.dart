@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:happening/models/currentuser.dart';
 import 'package:happening/screens/navigating/nav.dart';
 import 'package:happening/constants/basicConsts.dart';
+import 'package:happening/utils/navigate.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,9 +18,9 @@ class MyApp extends StatelessWidget {
       create: (context) => cr,
       child: Builder(builder: (context) {
         return MaterialApp(
+          navigatorKey: navigatorService.navigatorKey,
           debugShowCheckedModeBanner: false,
           title: 'Happening',
-          onGenerateRoute: R.Router.generateRoute,
           theme: ThemeData(
             primarySwatch: Colors.deepPurple,
             accentColor: AppColors.primaryAccent,

@@ -46,7 +46,7 @@ class _RegisterEmailScreenState extends State<RegisterEmailScreen> {
 
   checkMail() async {
     if (emailxChecked) {
-      Navigator.of(context).pushNamed(Routes.RegisterName, arguments: email);
+      navigatorService.navigateTo(Routes.RegisterName, arguments: email);
       return;
     }
     setState(() {

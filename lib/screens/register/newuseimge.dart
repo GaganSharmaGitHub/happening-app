@@ -130,7 +130,7 @@ class _UserAfterRegImageState extends State<UserAfterRegImage> {
                                 Radius.circular(30),
                               ),
                             ),
-                            onPressed: Navigator.of(context).pop,
+                            onPressed: navigatorService.pop,
                           ),
                         )
                       ],

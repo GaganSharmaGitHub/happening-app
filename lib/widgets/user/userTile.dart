@@ -59,7 +59,7 @@ class _UserTileState extends State<UserTile> {
       title: Text('${user.name}'),
       trailing: widget.trail,
       onTap: () {
-        Navigator.of(context).pushNamed(Routes.UserScreen, arguments: user);
+        navigatorService.navigateTo(Routes.UserScreen, arguments: user);
       },
     );
   }

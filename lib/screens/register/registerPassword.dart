@@ -21,13 +21,11 @@ class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
     checkPassword() async {
       setState(() {
         if (!allOk) return;
-        Navigator.of(context).pushNamedAndRemoveUntil(
-            Routes.Registering, (Route<dynamic> route) => false,
-            arguments: {
-              'name': widget.name,
-              'email': widget.email,
-              'password': password,
-            });
+        navigatorService.removeAllNavigateTo(Routes.Registering, arguments: {
+          'name': widget.name,
+          'email': widget.email,
+          'password': password,
+        });
       });
     }
 

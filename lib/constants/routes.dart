@@ -1,3 +1,5 @@
+export 'package:happening/utils/navigate.dart';
+
 class Routes {
   static const String Splash = 'splash Screen';
   static const String Welcome = 'welcome';

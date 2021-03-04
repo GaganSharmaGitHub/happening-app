@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:happening/constants/constants.dart';
+import 'package:happening/models/posts.dart';
 import 'package:happening/models/user.dart';
 import 'package:happening/painter/splashyPainter.dart';
+import 'package:happening/services/postService.dart';
+import 'package:happening/widgets/StrmBldr.dart';
+import 'package:happening/widgets/posts/feedPost.dart';
 import 'package:happening/widgets/user/userheader.dart';
 
 class ExUserScreen extends StatefulWidget {
@@ -33,18 +37,30 @@ class _ExUserScreenState extends State<ExUserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverPersistentHeader(
-            delegate: UserPageHeader(user: user, max: 400, min: 100),
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate((context, j) => ListTile(
-                  title: Text('item $j'),
-                )),
-          )
-        ],
-      ),
+      body: StrmBldr<List<Post>>(
+          stream: PostServices().getUserPosts(user.id).asStream(),
+          builder: (context, snapshot) {
+            return CustomScrollView(
+              slivers: [
+                SliverPersistentHeader(
+                  delegate: UserPageHeader(user: user, max: 400, min: 100),
+                ),
+                SliverToBoxAdapter(
+                  child: Column(
+                    children: snapshot
+                        .map((e) => Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 20),
+                              child: FeedPostCard(
+                                initPost: e,
+                              ),
+                            ))
+                        .toList(),
+                  ),
+                )
+              ],
+            );
+          }),
     );
   }
 }

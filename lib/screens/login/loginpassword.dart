@@ -41,9 +41,7 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
         var setting = await prefs.setString(SPKeys.authToken, token);
         c.setUser(User.fromMap(mp['user']), token);
         if (setting != null) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              Routes.Home, (Route<dynamic> route) => false,
-              arguments: []);
+          navigatorService.removeAllNavigateTo(Routes.Home);
         }
         return;
       } else {
@@ -53,11 +51,10 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
       }
     } catch (e) {
       //c.setError(e.toString());
-      Navigator.of(context).pushNamedAndRemoveUntil(
+      navigatorService.removeAllNavigateTo(
         Routes.Welcome,
-        (Route<dynamic> route) => false,
       );
-      Navigator.of(context).pushNamed(Routes.Error);
+      navigatorService.navigateTo(Routes.Error);
     }
   }
 

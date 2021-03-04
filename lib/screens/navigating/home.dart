@@ -20,10 +20,7 @@ class HomeScreen extends StatefulWidget {
 //    CurrentUser c = context.watch<CurrentUser>();
 Future logOut() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.clear().then((value) {
-    //      Navigator.of(context).pushNamedAndRemoveUntil(
-//            Routes.Welcome, (Route<dynamic> route) => false);
-  });
+  prefs.clear().then((value) {});
 }
 
 class _HomeScreenState extends State<HomeScreen> {

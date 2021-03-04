@@ -17,7 +17,7 @@ class _ProfileTabState extends State<ProfileTab> {
           FlatButton(
             child: Text('image'),
             onPressed: () =>
-                Navigator.of(context).pushNamed(Routes.PostRegisterImage),
+                navigatorService.navigateTo(Routes.PostRegisterImage),
           ),
           ClipOval(
             child: SizedBox(
@@ -29,8 +29,9 @@ class _ProfileTabState extends State<ProfileTab> {
             child: Text('logout'),
             onPressed: () async {
               SharedPreferences pref = await SharedPreferences.getInstance();
-              pref.clear().then(
-                  (value) => Navigator.of(context).pushNamed(Routes.Splash));
+              pref
+                  .clear()
+                  .then((value) => navigatorService.navigateTo(Routes.Splash));
             },
           ),
         ],

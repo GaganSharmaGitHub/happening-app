@@ -7,11 +7,11 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     gotoLogin() {
-      Navigator.of(context).pushNamed(Routes.Login);
+      navigatorService.navigateTo(Routes.Login);
     }
 
     gotoRegister() {
-      Navigator.of(context).pushNamed(Routes.Register);
+      navigatorService.navigateTo(Routes.Register);
     }
 
     return ScrollableFullScreen(

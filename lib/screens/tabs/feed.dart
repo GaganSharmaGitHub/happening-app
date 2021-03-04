@@ -47,8 +47,8 @@ class _FeedTabState extends State<FeedTab> {
     CurrentUser c = context.watch<CurrentUser>();
 
     void createPost(BuildContext ctx, {Post repost}) async {
-      var mp = await Navigator.of(ctx)
-          .pushNamed(Routes.WritePost, arguments: repost);
+      var mp = await navigatorService.navigateTo(Routes.WritePost,
+          arguments: repost);
       if (mp is Map) {
         if (mp['success'] == true) {
           Post newPost = Post.fromDynamic(mp['data']);

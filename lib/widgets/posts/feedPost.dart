@@ -34,7 +34,7 @@ class _FeedPostCardState extends State<FeedPostCard> {
     CurrentUser c = context.read<CurrentUser>();
 
     var mp =
-        await Navigator.of(ctx).pushNamed(Routes.WritePost, arguments: repost);
+        await navigatorService.navigateTo(Routes.WritePost, arguments: repost);
     if (mp is Map) {
       if (mp['success'] == true) {
         Post newPost = Post.fromDynamic(mp['data']);
@@ -55,7 +55,7 @@ class _FeedPostCardState extends State<FeedPostCard> {
           BoxDecoration(border: Border.all(width: 1, color: Colors.grey)),
       child: InkWell(
         onTap: () {
-          Navigator.of(context).pushNamed(Routes.OpenPost, arguments: post);
+          navigatorService.navigateTo(Routes.OpenPost, arguments: post);
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -77,8 +77,8 @@ class _FeedPostCardState extends State<FeedPostCard> {
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
                   onTap: () {
-                    Navigator.of(context)
-                        .pushNamed(Routes.OpenPost, arguments: post.repost);
+                    navigatorService.navigateTo(Routes.OpenPost,
+                        arguments: post.repost);
                   },
                   child: RePostCard(
                     initPost: post.repost,

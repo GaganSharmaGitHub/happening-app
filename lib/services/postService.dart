@@ -10,6 +10,14 @@ class FeedResponse {
 }
 
 class PostServices {
+  Future<List<Post>> getUserPosts(String userid) async {
+    Map map = await ApiRepository().allPosts(query: {'author': userid});
+    List temp = [];
+
+    if (map['data'] is List) temp = map['data'];
+    return temp.map<Post>((e) => Post.fromDynamic(e)).toList();
+  }
+
   Future<List<TagTrending>> trendingTags() async {
     Map map = await ApiRepository().trendingTags();
     if (map['success'] == true) {

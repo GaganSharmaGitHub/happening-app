@@ -39,7 +39,7 @@ class _OpenPostScreenState extends State<OpenPostScreen> {
     CurrentUser c = context.read<CurrentUser>();
 
     var mp =
-        await Navigator.of(ctx).pushNamed(Routes.WritePost, arguments: repost);
+        await navigatorService.navigateTo(Routes.WritePost, arguments: repost);
     if (mp is Map) {
       if (mp['success'] == true) {
         Post newPost = Post.fromDynamic(mp['data']);

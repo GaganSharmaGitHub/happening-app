@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:happening/api/apiRepo.dart';
+import 'package:happening/constants/basicConsts.dart';
 import 'package:happening/models/currentuser.dart';
 import 'package:happening/models/posts.dart';
 import 'package:happening/utils/imageUtil.dart';
@@ -37,7 +38,7 @@ class _CreatePostState extends State<CreatePost> {
 
       setState(() {
         isLoading = false;
-        Navigator.of(context).pop(resp);
+        navigatorService.pop(resp);
       });
     }
 
